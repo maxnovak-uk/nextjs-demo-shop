@@ -1,10 +1,10 @@
 "use client";
 import React from 'react';
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
-import { ProductProp } from '@/app/types/product';
+import { Product } from '@/app/lib/definitions';
 
-export default function AddToCart({product}: {product: ProductProp}) {
-  const addItem = (product: ProductProp, quantity: number) => {
+export default function AddToCart({product}: {product: Product}) {
+  const addItem = (product: Product, quantity: number) => {
     
   }
   return (

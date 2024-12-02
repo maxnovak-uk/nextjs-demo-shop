@@ -10,7 +10,7 @@ const navigation = [
 
 export default function NavBar() {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-gray-800 sticky z-10 top-0">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -32,7 +32,7 @@ export default function NavBar() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <NavLink link={item} />
+                  <NavLink key={item.name} link={item} />
                 ))}
               </div>
             </div>
@@ -46,7 +46,7 @@ export default function NavBar() {
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pb-3 pt-2">
           {navigation.map((item) => (
-            <div className="flex flex-col text-center">
+            <div key={item.name} className="flex flex-col text-center">
               <NavLink link={item} />
             </div>
           ))}

@@ -1,11 +1,23 @@
-import ProductsList from "@/app/components/ProductsList";
+import ProductsPromo from "./components/HomePromo";
+import Link from "next/link";
+import { ShoppingBagIcon } from "@heroicons/react/24/outline";
+import ProductsCollection from "./components/product/ProductsCollection";
 
 export default function Home() {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900">Customers purchased</h2>
-        <ProductsList />
+      <ProductsPromo 
+        title={"Unleash Your Inner Beauty!"} 
+        text={"Discover the secret to radiant skin with our luxurious range of cosmetic products! Crafted with love and the finest ingredients, our formulas are designed to enhance your natural beauty."} 
+      />
+      <div className="mx-auto max-w-2xl px-4 pb-16 sm:px-6 sm:pb-24 lg:max-w-7xl lg:px-8">
+        <ProductsCollection title={"Our newest products"} amount={8} />
+        <div className="text-center">
+          <Link href={"/products"} className="inline-flex gap-x-2 items-center rounded-md bg-indigo-600 px-6 py-4 uppercase text-lg font-semibold text-white hover:bg-indigo-500">
+            <ShoppingBagIcon aria-hidden="true" className="size-6" />
+            <span>See all products</span>
+          </Link>
+        </div>
       </div>
     </div>
   );
