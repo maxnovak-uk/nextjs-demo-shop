@@ -59,7 +59,7 @@ export default function CartModal({isOpen, setModalVisibility}: {isOpen: boolean
                   <div className="mt-6">
                     <Link
                       href="/checkout"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-violet-600 transition-colors px-6 py-3 text-base font-medium text-white shadow-sm lg:hover:bg-violet-700"
                     >
                       Checkout
                     </Link>
@@ -70,7 +70,7 @@ export default function CartModal({isOpen, setModalVisibility}: {isOpen: boolean
                       <button
                         type="button"
                         onClick={() => setModalVisibility()}
-                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                        className="font-medium transition-colors text-violet-600 hover:text-violet-700"
                       >
                         Continue Shopping
                         <span aria-hidden="true"> &rarr;</span>

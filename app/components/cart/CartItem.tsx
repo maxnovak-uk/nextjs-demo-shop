@@ -23,7 +23,7 @@ export default function CartItem({item}: {item: CartItemProp}) {
           <p className="text-gray-500">Qty {item.quantity}</p>
 
           <div className="flex">
-            <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+            <button type="button" className="font-medium text-violet-600 lg:hover:text-violet-700">
               Remove
             </button>
           </div>
