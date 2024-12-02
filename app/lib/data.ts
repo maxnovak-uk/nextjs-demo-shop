@@ -11,7 +11,7 @@ export async function fetchProducts(amount?: number, offset?: number) {
     amount ? amount : '*';
     offset ? offset : 0;
 
-    const ProductResponsePromise = sql<Product[]>
+    const ProductResponsePromise = sql
       `
       SELECT *
           FROM public.products
@@ -44,7 +44,7 @@ export async function fetchProductById(id: string) {
     // console.log('Fetching product data by ID......');
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    const response = await sql<Product>
+    const response = await sql
     `SELECT * FROM public.products WHERE id = ${id}`;
     return response.rows[0];
   } catch (error) {

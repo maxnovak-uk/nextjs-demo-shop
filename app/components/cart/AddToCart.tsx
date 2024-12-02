@@ -2,9 +2,9 @@
 import React from 'react';
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { Product } from '@/app/lib/definitions';
-
-export default function AddToCart({product}: {product: Product}) {
-  const addItem = (product: Product, quantity: number) => {
+import { QueryResultRow } from '@vercel/postgres';
+export default function AddToCart({product}: {product: QueryResultRow}) {
+  const addItem = (product: QueryResultRow, quantity: number) => {
     
   }
   return (

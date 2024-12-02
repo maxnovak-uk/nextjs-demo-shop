@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import AddToCart from "@/app/components/cart/AddToCart";
 import { Product } from '@/app/lib/definitions';
+import { QueryResultRow } from '@vercel/postgres';
 
-export default function ProductItem({product}: {product: Product}) {
+export default function ProductItem({product}: {product: QueryResultRow}) {
   return (
     <div className="relative group flex flex-col">
       <Link href={`/products/${product.id}`} className="block overflow-hidden rounded-t-md border border-gray-200">
