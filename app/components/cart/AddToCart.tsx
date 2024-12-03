@@ -1,16 +1,42 @@
 "use client";
-import React from 'react';
-import { ShoppingCartIcon } from "@heroicons/react/24/outline";
-import { Product } from '@/app/lib/definitions';
+import React, { useEffect, useState } from 'react';
+import { ShoppingCartIcon, CheckIcon } from "@heroicons/react/24/outline";
 import { QueryResultRow } from '@vercel/postgres';
+import { addItem } from '@/app/redux/features/cart/cartSlice';
+import { useAppDispatch } from '@/app/redux/hooks';
+import Button from '@/app/components/Button';
+
 export default function AddToCart({product}: {product: QueryResultRow}) {
-  const addItem = (product: QueryResultRow, quantity: number) => {
-    
+  const dispatch = useAppDispatch();
+  const [isProductAdded, setIsProductAdded] = useState(false);
+  
+  useEffect(
+    () => {
+      let timer = setTimeout(() => setIsProductAdded(false), 1500);
+      return () => {
+        clearTimeout(timer);
+      };
+    },
+    [isProductAdded]
+  );
+
+  const addProductToCart = (product: QueryResultRow, quantity: number) => {
+    dispatch(addItem({...product, quantity, created_at: product.created_at.toJSON()}));
+    setIsProductAdded(true);
   }
+
   return (
-    <button className="inline-flex gap-x-2 items-center rounded-md bg-violet-600 transition-colors px-4 py-3 uppercase text-sm font-semibold text-white lg:hover:bg-violet-700" onClick={() => addItem(product, 1)}>
-      <ShoppingCartIcon aria-hidden="true" className="size-6" />
-      <span>Add to cart</span>
-    </button>
+    <>
+      {isProductAdded ? (
+        <div className="inline-flex gap-x-2 items-center text-sm px-4 py-3 uppercase text-indigo-500">
+          <CheckIcon aria-hidden="true" className="size-6" />
+          <span>Added to Cart</span>
+        </div>
+      ) : (
+        <Button isDisabled={isProductAdded} addProductToCart={() => addProductToCart(product, 1)} text="Add to Cart">
+          <ShoppingCartIcon aria-hidden="true" className="size-6" />
+        </Button>
+      )}
+    </>
   )
 }

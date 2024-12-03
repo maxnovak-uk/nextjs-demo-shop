@@ -1,48 +1,46 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { Product } from "@/app/lib/definitions";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState: { 
-    isOpen: false, 
-    items: [
-      {
-        id: 1,
-        title: "Essence Mascara Lash Princess",
-        price: 9.99,
-        brand: "Essence",
-        quantity: 1,
-        thumbnail: "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
-        images: [
-          "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png"
-        ]
-      },
-      {
-        id: 2,
-        title: "Eyeshadow Palette with Mirror",
-        brand: "Glamour Beauty",
-        price: 19.99,
-        quantity: 2,
-        thumbnail: "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
-        images: [
-          "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png"
-        ]
-      }
-    ],
+    isOpen: false,
+    items: [],
     totalAmount: 0 
   },
   reducers: {
-    setModalVisibility: (state, action) => {
+    setModalVisibility: (state, action: PayloadAction) => {
       state.isOpen = action.payload;
     },
-    addItem: (state, payload) => { // + payload.amount
-      // const updatedTotalAmount = state.totalAmount + payload.price * payload.amount;
-      // const existingCartItemIndex = state.items.findIndex((item) => {
-      //   return item.id === payload.id;
-      // });
-      // console.log(updatedTotalAmount, existingCartItemIndex);
+    addItem: (state, action: PayloadAction) => {
+      if (state.totalAmount == 0) {
+        state.items.push({...action.payload, quantity: 1});
+      } else {
+        let check = false;
+        state.items.map((item: Product, key: number) => {
+          if (item.id == action.payload.id) {
+            state.items[key].quantity++;
+            check = true;
+          }
+        });
+        if (!check) {
+          state.items.push({...action.payload, quantity: 1});
+        }
+      }
+      state.totalAmount = state.totalAmount + 1;
     },
-    removeItem: (id) => {},
-    clearCart: () => {}
+    removeItem: (state, action: PayloadAction) => {
+      const item = state.items.find((item: Product) => item.id === action.payload.id);
+      if (item.quantity <= 1) {
+        state.items.filter((item: Product) => item.id !== action.payload.id);
+      } else {
+        item.quantity = item.quantity - 1;
+      }
+    },
+    clearCart: (state) => {
+      state.items = [];
+    }
   },
 });
-export const { setModalVisibility } = cartSlice.actions;
+export const { setModalVisibility, addItem, removeItem, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,8 +1,8 @@
-import { CartItemProp } from '@/app/types/cart';
+import { Product } from '@/app/lib/definitions';
 import Link from 'next/link';
 import React from 'react';
 
-export default function CartItem({item}: {item: CartItemProp}) {
+export default function CartItem({item}: {item: Product}) {
   return (
     <li className="flex py-6">
       <div className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -23,7 +23,7 @@ export default function CartItem({item}: {item: CartItemProp}) {
           <p className="text-gray-500">Qty {item.quantity}</p>
 
           <div className="flex">
-            <button type="button" className="font-medium text-violet-600 lg:hover:text-violet-700">
+            <button type="button" className="font-medium text-indigo-600 lg:hover:text-indigo-700">
               Remove
             </button>
           </div>

@@ -1,13 +1,13 @@
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { CartStateProp } from '../../types/cart';
+import { Product, CartStateProp } from '@/app/lib/definitions';
 import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import Link from 'next/link';
+import { useAppDispatch } from '@/app/redux/hooks';
 
 export default function CartModal({isOpen, setModalVisibility}: {isOpen: boolean, setModalVisibility: (arg?: boolean) => void}) {
   const products = useSelector((state: CartStateProp) => state.cart.items);
-
   return (
     <Dialog open={isOpen} onClose={() => setModalVisibility()} className="relative z-10">
       <DialogBackdrop
@@ -42,7 +42,7 @@ export default function CartModal({isOpen, setModalVisibility}: {isOpen: boolean
                   <div className="mt-8">
                     <div className="flow-root">
                       <ul role="list" className="-my-6 divide-y divide-gray-200">
-                        {products.map((product) => (
+                        {products.map((product: Product) => (
                           <CartItem key={product.id} item={product} />
                         ))}
                       </ul>
@@ -59,7 +59,7 @@ export default function CartModal({isOpen, setModalVisibility}: {isOpen: boolean
                   <div className="mt-6">
                     <Link
                       href="/checkout"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-violet-600 transition-colors px-6 py-3 text-base font-medium text-white shadow-sm lg:hover:bg-violet-700"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 transition-colors px-6 py-3 text-base font-medium text-white shadow-sm lg:hover:bg-indigo-700"
                     >
                       Checkout
                     </Link>
@@ -70,7 +70,7 @@ export default function CartModal({isOpen, setModalVisibility}: {isOpen: boolean
                       <button
                         type="button"
                         onClick={() => setModalVisibility()}
-                        className="font-medium transition-colors text-violet-600 hover:text-violet-700"
+                        className="font-medium transition-colors text-indigo-600 hover:text-indigo-700"
                       >
                         Continue Shopping
                         <span aria-hidden="true"> &rarr;</span>

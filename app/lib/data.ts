@@ -5,8 +5,8 @@ export async function fetchProducts(amount?: number, offset?: number) {
   try {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
-    console.log('Fetching products data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // console.log('Fetching products data...');
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
 
     amount ? amount : '*';
     offset ? offset : 0;

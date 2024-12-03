@@ -13,7 +13,7 @@ export default function Home() {
       <div className="mx-auto max-w-2xl px-4 pb-16 sm:px-6 sm:pb-24 lg:max-w-7xl lg:px-8">
         <ProductsCollection title={"Our newest products"} amount={8} />
         <div className="text-center">
-          <Link href={"/products"} className="inline-flex gap-x-2 items-center rounded-md bg-violet-600 transition-colors px-6 py-4 uppercase text-lg font-semibold text-white lg:hover:bg-violet-700">
+          <Link href={"/products"} className="inline-flex gap-x-2 items-center rounded-md bg-indigo-600 transition-colors px-6 py-4 uppercase text-lg font-semibold text-white lg:hover:bg-indigo-700">
             <ShoppingBagIcon aria-hidden="true" className="size-6" />
             <span>See all products</span>
           </Link>
